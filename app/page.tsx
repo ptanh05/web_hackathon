@@ -26,6 +26,7 @@ export default function Home() {
           <Link href="#faqs" className="text-sm hover:text-primary transition-colors">
             FAQs
           </Link>
+          <Link href="#rules" className="text-sm hover:text-primary transition-colors"></Link>
         </nav>
         <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white">
           Tham gia Discord
@@ -493,7 +494,7 @@ export default function Home() {
       </section>
 
       {/* Rules Section */}
-      <section className="py-20 bg-gradient-to-b from-black to-gray-900">
+      <section id= "rules" className="py-20 bg-gradient-to-b from-black to-gray-900">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Quy định cuộc thi</h2>
@@ -603,10 +604,17 @@ export default function Home() {
             <div>
               <h3 className="font-bold text-lg mb-4">Liên kết nhanh</h3>
               <ul className="space-y-2">
-                {["Trang chủ", "Tracks", "Lịch trình", "Tài nguyên", "Quy định", "FAQs"].map((link) => (
-                  <li key={link}>
-                    <Link href="#" className="text-white/70 hover:text-white transition-colors">
-                      {link}
+                {[
+                  { name: "Trang chủ", id: "/" },
+                  { name: "Tracks", id: "tracks" },
+                  { name: "Lịch trình", id: "schedule" },
+                  { name: "Tài nguyên", id: "resources" },
+                  { name: "Quy định", id: "rules" },
+                  { name: "FAQs", id: "faqs" }
+                ].map((link) => (
+                  <li key={link.id}>
+                    <Link href={`#${link.id}`} className="text-white/70 hover:text-white transition-colors">
+                      {link.name}
                     </Link>
                   </li>
                 ))}
@@ -618,13 +626,14 @@ export default function Home() {
               <ul className="space-y-2">
                 {["Cardano.org", "Cardano Foundation", "Cardano Tools", "Aiken Language", "Andamio"].map((link) => (
                   <li key={link}>
-                    <Link href="#" className="text-white/70 hover:text-white transition-colors">
+                    <Link href={`#${link.toLowerCase().replace(" ", "-")}`} className="text-white/70 hover:text-white transition-colors">
                       {link}
                     </Link>
                   </li>
                 ))}
               </ul>
             </div>
+
 
             <div>
               <h3 className="font-bold text-lg mb-4">Liên hệ</h3>
