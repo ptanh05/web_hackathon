@@ -9,6 +9,10 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Cardano Blockchain Hackathon 2025",
   description: "Cuộc thi Cardano Blockchain Hackathon 2025 với tổng giải thưởng 18,000 ADA",
+<<<<<<< HEAD
+  generator: 'v0.dev'
+=======
+>>>>>>> 682a4ca2b9ded347962903dd186becbb638dae4a
 }
 
 export default function RootLayout({

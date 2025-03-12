@@ -2,7 +2,8 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { ArrowRight, Calendar, Globe, Trophy } from "lucide-react"
-
+import { GlowingTitle } from "@/components/ui/makeBeauty";
+import { DiagonalMeteors } from "@/components/ui/saobang";
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
@@ -52,6 +53,8 @@ export default function Home() {
         <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute inset-0 bg-grid-white/[0.2] bg-[length:50px_50px]" />
         </div>
+         {/* Diagonal Meteors Effect */}
+         <DiagonalMeteors count={25} speed={3} />
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-0"></div>
@@ -61,11 +64,11 @@ export default function Home() {
           {/* Logo Cardano - Thay thế bằng logo chính thức khi có */}
           
 
-          <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
-            <span className="text-white"> BLOCKCHAIN</span>
-            <span className="block text-white"> HACKATHON 2025</span>
-          </h1>
+        <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
+        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
+        <span className="text-white"> BLOCKCHAIN</span>
+        <span className="block text-white"> HACKATHON 2025</span>
+       </GlowingTitle>
 
           <div className="flex items-center justify-center gap-2 mb-8">
             <div className="h-[1px] w-16 bg-white/30"></div>
