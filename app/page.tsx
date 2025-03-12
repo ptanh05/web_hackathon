@@ -7,13 +7,26 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Navigation */}
-      <header className="container mx-auto py-4 px-4 flex justify-between items-center z-10 relative">
+      <header className="container mx-auto pt-[1rem] pb-[3rem] px-4 flex justify-between items-center z-10 relative">
         <Link href="/" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center">
-            <span className="text-xl font-bold">CB</span>
-          </div>
         </Link>
         <nav className="hidden md:flex items-center gap-8">
+        <div className="absolute top-4 left-4 flex items-center space-x-4">
+            <Image
+              src="/logo.png"
+              alt="Cardano Logo"
+              width={80}
+              height={80}
+              className="h-[80px] object-contain"
+            />
+            <Image
+              src="/cardano-ada-logo.png"
+              alt="Cardano Logo"
+              width={50}
+              height={50}
+              className="h-[80px] object-contain"
+            />
+          </div>
           <Link href="#tracks" className="text-sm hover:text-primary transition-colors">
             Tracks
           </Link>
@@ -46,13 +59,7 @@ export default function Home() {
         {/* Content */}
         <div className="container mx-auto px-4 z-10 text-center">
           {/* Logo Cardano - Thay thế bằng logo chính thức khi có */}
-          <Image
-            src="/cardano-logo.svg"
-            alt="Cardano Logo"
-            width={200}
-            height={60}
-            className="h-[60px] object-contain"
-          />
+          
 
           <h1 className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
