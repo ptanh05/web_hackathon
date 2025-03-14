@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Calendar, Globe, Trophy } from "lucide-react"
+import { ArrowRight, Calendar, Globe, Trophy , ClipboardList} from "lucide-react"
 import { GlowingTitle } from "@/components/ui/makeBeauty";
 import { DiagonalMeteors } from "@/components/ui/saobang";
 import { GlowingStars } from "@/components/star/glowingStarsProps";
@@ -140,7 +140,9 @@ export default function Home() {
   <div className="container mx-auto px-4 relative z-10">
     <div className="text-center mb-16">
       <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-4">Cuộc Thi</span>
+      <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
       <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Các Track Thi Đấu</h2>
+      </GlowingTitle>
       <p className="text-white/70 max-w-2xl mx-auto">
         Chọn một trong hai track để thể hiện kỹ năng và sáng tạo của bạn
       </p>
@@ -270,78 +272,140 @@ export default function Home() {
   </div>
 </section>
 
-      {/* Timeline Section */}
-      <section id="schedule" className="py-20 bg-black relative">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Lịch trình cuộc thi</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">Đánh dấu lịch của bạn cho những ngày quan trọng</p>
-          </div>
+  {/* Timeline Section */}
+<section id="schedule" className="py-20 bg-black relative overflow-hidden">
+  {/* Background grid and glow */}
+  <div className="absolute inset-0 bg-grid-white/[0.03] bg-[length:32px_32px] pointer-events-none" />
+  <div className="absolute -top-24 left-1/2 transform -translate-x-1/2 w-[510px] h-[510px] rounded-full bg-blue-500/10 blur-[100px] pointer-events-none" />
+  
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-4">Lịch trình</span>
+      <GlowingTitle className="text-4xl md:text-10xl font-extrabold mb-4 tracking-tighter">
+      <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">
+        Lịch Trình Cuộc Thi HackaThon
+          </h2>
+      
+      </GlowingTitle>
+      <p className="text-white/70 max-w-2xl mx-auto">
+        Đánh dấu lịch của bạn cho những ngày quan trọng
+      </p>
+    </div>
 
-          <div className="relative max-w-4xl mx-auto">
-            {/* Timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-indigo-500"></div>
+    <div className="relative max-w-4xl mx-auto">
+      {/* Timeline line with animation */}
+      <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 to-indigo-500">
+        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full bg-blue-500 animate-ping opacity-75"></div>
+      </div>
 
-            {[
-              {
-                date: "19/03/2025",
-                title: "Mở đăng ký & Bắt đầu nộp dự án",
-                description: "Các đội thi có thể đăng ký và bắt đầu nộp dự án",
-              },
-              {
-                date: "13/04/2025",
-                title: "Workshop 1: Blockchain & Cardano",
-                description: "Giới thiệu Blockchain, Cardano Ecosystem và cơ hội của Cardano",
-              },
-              {
-                date: "20/04/2025",
-                title: "Workshop 2: Building on Cardano",
-                description: "Giới thiệu về các công nghệ nổi bật và công cụ phát triển trên Cardano",
-              },
-              {
-                date: "04/05/2025",
-                title: "Workshop 3: Hackathon Winning Strategies",
-                description: "Chia sẻ cách thắng cuộc thi hack và kinh nghiệm xây dựng Pitchdex",
-              },
-              {
-                date: "06/05/2025",
-                title: "Deadline đăng ký & nộp dự án",
-                description: "Hạn chót để đăng ký và nộp dự án",
-              },
-              {
-                date: "24-25/05/2025",
-                title: "Hackday & Vòng chung kết",
-                description: "Các đội vào vòng chung kết thuyết trình và công bố kết quả",
-              },
-            ].map((event, index) => (
-              <div key={index} className="flex flex-col md:flex-row items-center mb-8">
-                <div className="flex items-center md:w-1/2 md:justify-end md:pr-8">
-                  {index % 2 === 0 && (
-                    <div className="bg-gradient-to-r from-blue-500 to-indigo-500 p-6 rounded-lg shadow-lg md:max-w-sm w-full">
-                      <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                      <p className="text-white/80 mb-2">{event.date}</p>
-                      <p className="text-white/70">{event.description}</p>
-                    </div>
-                  )}
+      {[
+        {
+          date: "19/03/2025",
+          title: "Mở đăng ký & Bắt đầu nộp dự án",
+          description: "Các đội thi có thể đăng ký và bắt đầu nộp dự án",
+          icon: "🚀"
+        },
+        {
+          date: "13/04/2025",
+          title: "Workshop 1: Blockchain & Cardano",
+          description: "Giới thiệu Blockchain, Cardano Ecosystem và cơ hội của Cardano",
+          icon: "📚"
+        },
+        {
+          date: "20/04/2025",
+          title: "Workshop 2: Building on Cardano",
+          description: "Giới thiệu về các công nghệ nổi bật và công cụ phát triển trên Cardano",
+          icon: "💻"
+        },
+        {
+          date: "04/05/2025",
+          title: "Workshop 3: Hackathon Winning Strategies",
+          description: "Chia sẻ cách thắng cuộc thi hack và kinh nghiệm xây dựng Pitchdex",
+          icon: "🏆"
+        },
+        {
+          date: "06/05/2025",
+          title: "Deadline đăng ký & nộp dự án",
+          description: "Hạn chót để đăng ký và nộp dự án",
+          icon: "⏰"
+        },
+        {
+          date: "24-25/05/2025",
+          title: "Hackday & Vòng chung kết",
+          description: "Các đội vào vòng chung kết thuyết trình và công bố kết quả",
+          icon: "🎯"
+        },
+      ].map((event, index) => (
+        <div 
+          key={index} 
+          className="flex flex-col md:flex-row items-center mb-12 group"
+          data-aos={index % 2 === 0 ? "fade-right" : "fade-left"}
+          data-aos-delay={index * 100}
+          data-aos-duration="800"
+        >
+          <div className="flex items-center md:w-1/2 md:justify-end md:pr-8 relative">
+            {index % 2 === 0 && (
+              <div className="bg-gradient-to-r from-blue-600/80 to-indigo-600/80 backdrop-blur-sm p-6 rounded-lg shadow-[0_8px_30px_rgb(59,130,246,0.33)] 
+                  md:max-w-sm w-full border border-blue-500/20 transition-all duration-500 ease-in-out
+                  hover:shadow-[0_10px_40px_rgb(59,130,246,0.5)] hover:translate-y-[-5px] hover:border-blue-400/40
+                  relative group overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Icon */}
+                <div className="absolute -right-3 -top-3 w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                  <span className="text-lg">{event.icon}</span>
                 </div>
-                <div className="mx-4 md:mx-0 flex flex-col items-center">
-                  <div className="w-4 h-4 bg-blue-500 rounded-full mb-2"></div>
-                  <div className="h-full w-0.5 bg-blue-500"></div>
-                </div>
-                <div className="md:w-1/2 md:pl-8">
-                  {index % 2 !== 0 && (
-                    <div className="bg-gradient-to-r from-indigo-500 to-blue-500 p-6 rounded-lg shadow-lg md:max-w-sm w-full">
-                      <h3 className="text-xl font-bold text-white mb-2">{event.title}</h3>
-                      <p className="text-white/80 mb-2">{event.date}</p>
-                      <p className="text-white/70">{event.description}</p>
-                    </div>
-                  )}
-                </div>
+                
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:translate-x-1 transition-all duration-300">{event.title}</h3>
+                <p className="text-white/80 mb-2 font-semibold">{event.date}</p>
+                <p className="text-white/70 group-hover:text-white/90 transition-colors duration-300">{event.description}</p>
               </div>
-            ))}
+            )}
+          </div>
+          
+          {/* Timeline dot with pulse effect */}
+          <div className="mx-4 md:mx-0 flex flex-col items-center z-10">
+            <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center
+                border-[3px] border-black relative group-hover:scale-125 transition-transform duration-300">
+              <div className="absolute w-full h-full rounded-full bg-blue-400 animate-ping opacity-30"></div>
+            </div>
+            <div className="h-full w-0.5 bg-gradient-to-b from-blue-500 to-indigo-500 mt-2"></div>
+          </div>
+          
+          <div className="md:w-1/2 md:pl-8 relative">
+            {index % 2 !== 0 && (
+              <div className="bg-gradient-to-r from-indigo-600/80 to-blue-600/80 backdrop-blur-sm p-6 rounded-lg shadow-[0_8px_30px_rgb(99,102,241,0.33)] 
+                  md:max-w-sm w-full border border-indigo-500/20 transition-all duration-500 ease-in-out
+                  hover:shadow-[0_10px_40px_rgb(99,102,241,0.5)] hover:translate-y-[-5px] hover:border-indigo-400/40
+                  relative group overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                
+                {/* Icon */}
+                <div className="absolute -right-3 -top-3 w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                  <span className="text-lg">{event.icon}</span>
+                </div>
+                
+                <h3 className="text-xl font-bold text-white mb-2 group-hover:translate-x-1 transition-all duration-300">{event.title}</h3>
+                <p className="text-white/80 mb-2 font-semibold">{event.date}</p>
+                <p className="text-white/70 group-hover:text-white/90 transition-colors duration-300">{event.description}</p>
+              </div>
+            )}
           </div>
         </div>
-      </section>
+      ))}
+      
+      {/* Final point of timeline */}
+      <div className="absolute left-4 md:left-1/2 bottom-0 transform md:-translate-x-1/2 w-6 h-6 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center border-4 border-black z-10">
+        <div className="absolute w-full h-full rounded-full bg-indigo-400 animate-ping opacity-30"></div>
+      </div>
+    </div>
+  </div>
+  
+  {/* Curved line decoration */}
+  <svg className="absolute bottom-0 left-0 w-full text-gray-900/20" viewBox="0 0 1440 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0 51.76C240 116.279 480 116.279 720 51.76C960 -12.759 1200 -12.759 1440 51.76V115.5H0V51.76Z" fill="currentColor"/>
+  </svg>
+</section>
 
       {/* Evaluation Criteria */}
       <section className="py-20 bg-gradient-to-b from-gray-900 to-black">
