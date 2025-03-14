@@ -98,111 +98,177 @@ export default function Home() {
 
       {/* Key Info Section */}
       <section className="bg-black py-16 relative z-10">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4">
-                <Calendar className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Thời gian</h3>
-              <p className="text-white/70">Từ 15/03 đến 31/05/2025, với Hackday diễn ra vào 24-25/05/2025.</p>
-            </div>
-
-            <div className="bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4">
-                <Globe className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Đối tượng</h3>
-              <p className="text-white/70">
-                Nhà phát triển, lập trình viên, startup và sinh viên quan tâm đến công nghệ Cardano Blockchain.
-              </p>
-            </div>
-
-            <div className="bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4">
-                <Trophy className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold mb-2">Giải thưởng</h3>
-              <p className="text-white/70">Tổng giá trị giải thưởng lên đến 18,000 ADA cho các dự án xuất sắc nhất.</p>
-            </div>
-          </div>
+  <div className="container mx-auto px-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Card 1 */}
+      <div className="bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-blue-500/50 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:transform hover:-translate-y-1 group">
+        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+          <Calendar className="w-6 h-6 text-white" />
         </div>
-      </section>
+        <h3 className="text-xl font-bold mb-2 transition-colors duration-300 group-hover:text-blue-400">Thời gian</h3>
+        <p className="text-white/70 transition-colors duration-300 group-hover:text-white">Từ 15/03 đến 31/05/2025, với Hackday diễn ra vào 24-25/05/2025.</p>
+      </div>
+
+      {/* Card 2 */}
+      <div className="bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-blue-500/50 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:transform hover:-translate-y-1 group">
+        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+          <Globe className="w-6 h-6 text-white" />
+        </div>
+        <h3 className="text-xl font-bold mb-2 transition-colors duration-300 group-hover:text-blue-400">Đối tượng</h3>
+        <p className="text-white/70 transition-colors duration-300 group-hover:text-white">
+          Nhà phát triển, lập trình viên, startup và sinh viên quan tâm đến công nghệ Cardano Blockchain.
+        </p>
+      </div>
+
+      {/* Card 3 */}
+      <div className="bg-white/5 p-6 rounded-lg border border-white/10 backdrop-blur-sm transition-all duration-300 hover:bg-white/10 hover:border-blue-500/50 hover:shadow-[0_0_25px_rgba(59,130,246,0.2)] hover:transform hover:-translate-y-1 group">
+        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg">
+          <Trophy className="w-6 h-6 text-white" />
+        </div>
+        <h3 className="text-xl font-bold mb-2 transition-colors duration-300 group-hover:text-blue-400">Giải thưởng</h3>
+        <p className="text-white/70 transition-colors duration-300 group-hover:text-white">Tổng giá trị giải thưởng lên đến 18,000 ADA cho các dự án xuất sắc nhất.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Tracks Section */}
-      <section id="tracks" className="py-20 bg-gradient-to-b from-black to-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Các Track Thi Đấu</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">
-              Chọn một trong hai track để thể hiện kỹ năng và sáng tạo của bạn
-            </p>
-          </div>
+<section id="tracks" className="py-20 bg-gradient-to-b from-black to-gray-900 relative">
+  {/* Background grid pattern for depth */}
+  <div className="absolute inset-0 bg-grid-white/[0.03] bg-[length:30px_30px] pointer-events-none" />
+  
+  <div className="container mx-auto px-4 relative z-10">
+    <div className="text-center mb-16">
+      <span className="inline-block px-4 py-1.5 rounded-full bg-blue-500/10 text-blue-400 text-sm font-medium mb-4">Cuộc Thi</span>
+      <h2 className="text-3xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-200">Các Track Thi Đấu</h2>
+      <p className="text-white/70 max-w-2xl mx-auto">
+        Chọn một trong hai track để thể hiện kỹ năng và sáng tạo của bạn
+      </p>
+    </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white/5 p-8 rounded-lg border border-white/10 hover:border-blue-500/50 transition-all hover:bg-white/10">
-              <div className="text-4xl mb-4">🔗</div>
-              <h3 className="text-2xl font-bold mb-2">Track 1: Phát triển ứng dụng Blockchain với Cardano</h3>
-              <p className="text-white/70 mb-4">
-                Dành cho các nhà phát triển/lập trình viên phát triển ứng dụng Cardano trong các lĩnh vực thực tế như Y
-                tế, Thương mại điện tử, Giáo dục, Nông nghiệp, Tài sản kỹ thuật số, Công nghệ tài chính (FinTech), Công
-                nghệ thông tin...
-              </p>
-              <div className="bg-white/5 p-4 rounded-lg mb-4">
-                <h4 className="font-semibold mb-2">Giải thưởng:</h4>
-                <ul className="space-y-1 text-white/80">
-                  <li>• Giải nhất: 5,000 ADA</li>
-                  <li>• Giải nhì: 3,000 ADA</li>
-                  <li>• Giải ba: 1,500 ADA</li>
-                  <li>• Giải khuyến khích: 500 ADA</li>
-                </ul>
-              </div>
-              <Button variant="link" className="text-blue-400 p-0 flex items-center gap-2">
-                Tìm hiểu thêm <ArrowRight className="w-4 h-4" />
-              </Button>
-            </div>
-
-            <div className="bg-white/5 p-8 rounded-lg border border-white/10 hover:border-blue-500/50 transition-all hover:bg-white/10">
-              <div className="text-4xl mb-4">🎓</div>
-              <h3 className="text-2xl font-bold mb-2">Track 2: Sáng tạo công nghệ Blockchain cho sinh viên</h3>
-              <p className="text-white/70 mb-4">
-                Dành riêng cho sinh viên, khuyến khích sự sáng tạo và đổi mới trong việc ứng dụng công nghệ Cardano để
-                giải quyết vấn đề thực tế. Ý tưởng/đề tài/chủ đề không giới hạn.
-              </p>
-              <div className="bg-white/5 p-4 rounded-lg mb-4">
-                <h4 className="font-semibold mb-2">Giải thưởng:</h4>
-                <ul className="space-y-1 text-white/80">
-                  <li>• Giải nhất: 2,000 ADA</li>
-                  <li>• Giải nhì: 1,500 ADA</li>
-                  <li>• Giải ba: 1,000 ADA</li>
-                  <li>• Giải khuyến khích: 500 ADA</li>
-                </ul>
-              </div>
-              <Button variant="link" className="text-blue-400 p-0 flex items-center gap-2">
-                Tìm hiểu thêm <ArrowRight className="w-4 h-4" />
-              </Button>
-            </div>
-          </div>
-
-          <div className="mt-12 bg-white/5 p-6 rounded-lg border border-white/10">
-            <h3 className="text-xl font-bold mb-4">Giải thưởng phụ</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="p-4 bg-white/5 rounded-lg">
-                <h4 className="font-semibold mb-2">Giải thưởng ý tưởng sáng tạo</h4>
-                <p className="text-white/70">1,000 ADA</p>
-              </div>
-              <div className="p-4 bg-white/5 rounded-lg">
-                <h4 className="font-semibold mb-2">Giải thưởng cộng đồng</h4>
-                <p className="text-white/70">500 ADA</p>
-              </div>
-              <div className="p-4 bg-white/5 rounded-lg">
-                <h4 className="font-semibold mb-2">Giải thưởng bài viết recap</h4>
-                <p className="text-white/70">300 ADA (3 workshops * 100 ADA)</p>
-              </div>
-            </div>
-          </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Track 1 */}
+      <div className="bg-white/5 p-8 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 
+          hover:border-blue-500/50 hover:bg-gradient-to-br hover:from-blue-900/20 hover:to-indigo-900/20 
+          hover:shadow-[0_0_30px_rgba(59,130,246,0.2)] hover:transform hover:-translate-y-1 group">
+        <div className="text-4xl mb-6 transition-transform group-hover:scale-110 
+            bg-gradient-to-br from-blue-500/20 to-indigo-500/20 w-16 h-16 rounded-lg flex items-center justify-center">
+          🔗
         </div>
-      </section>
+        <h3 className="text-2xl font-bold mb-3 transition-colors duration-300 group-hover:text-blue-400">
+          Track 1: Phát triển ứng dụng Blockchain với Cardano
+        </h3>
+        <p className="text-white/70 mb-6 transition-colors duration-300 group-hover:text-white/90">
+          Dành cho các nhà phát triển/lập trình viên phát triển ứng dụng Cardano trong các lĩnh vực thực tế như Y
+          tế, Thương mại điện tử, Giáo dục, Nông nghiệp, Tài sản kỹ thuật số, Công nghệ tài chính (FinTech), Công
+          nghệ thông tin...
+        </p>
+        <div className="bg-white/5 p-5 rounded-lg mb-6 border border-white/5 transition-all duration-300 group-hover:border-blue-500/30 group-hover:bg-white/10">
+          <h4 className="font-semibold mb-3 text-white/90 group-hover:text-blue-300">Giải thưởng:</h4>
+          <ul className="space-y-2">
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs text-white">1</span>
+              Giải nhất: <span className="font-semibold text-blue-400">5,000 ADA</span>
+            </li>
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs text-white">2</span>
+              Giải nhì: <span className="font-semibold text-blue-400">3,000 ADA</span>
+            </li>
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-xs text-white">3</span>
+              Giải ba: <span className="font-semibold text-blue-400">1,500 ADA</span>
+            </li>
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-blue-500/70 to-indigo-600/70 flex items-center justify-center text-xs text-white">+</span>
+              Giải khuyến khích: <span className="font-semibold text-blue-400">500 ADA</span>
+            </li>
+          </ul>
+        </div>
+        <Button variant="link" className="text-blue-400 p-0 flex items-center gap-2 transition-all duration-300 group-hover:text-blue-300 group-hover:translate-x-1">
+          Tìm hiểu thêm <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </Button>
+      </div>
+
+      {/* Track 2 */}
+      <div className="bg-white/5 p-8 rounded-xl border border-white/10 backdrop-blur-sm transition-all duration-300 
+          hover:border-indigo-500/50 hover:bg-gradient-to-br hover:from-indigo-900/20 hover:to-blue-900/20 
+          hover:shadow-[0_0_30px_rgba(99,102,241,0.2)] hover:transform hover:-translate-y-1 group">
+        <div className="text-4xl mb-6 transition-transform group-hover:scale-110 
+            bg-gradient-to-br from-indigo-500/20 to-blue-500/20 w-16 h-16 rounded-lg flex items-center justify-center">
+          🎓
+        </div>
+        <h3 className="text-2xl font-bold mb-3 transition-colors duration-300 group-hover:text-indigo-400">
+          Track 2: Sáng tạo công nghệ Blockchain cho sinh viên
+        </h3>
+        <p className="text-white/70 mb-6 transition-colors duration-300 group-hover:text-white/90">
+          Dành riêng cho sinh viên, khuyến khích sự sáng tạo và đổi mới trong việc ứng dụng công nghệ Cardano để
+          giải quyết vấn đề thực tế. Ý tưởng/đề tài/chủ đề không giới hạn.
+        </p>
+        <div className="bg-white/5 p-5 rounded-lg mb-6 border border-white/5 transition-all duration-300 group-hover:border-indigo-500/30 group-hover:bg-white/10">
+          <h4 className="font-semibold mb-3 text-white/90 group-hover:text-indigo-300">Giải thưởng:</h4>
+          <ul className="space-y-2">
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-xs text-white">1</span>
+              Giải nhất: <span className="font-semibold text-indigo-400">2,000 ADA</span>
+            </li>
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-xs text-white">2</span>
+              Giải nhì: <span className="font-semibold text-indigo-400">1,500 ADA</span>
+            </li>
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center text-xs text-white">3</span>
+              Giải ba: <span className="font-semibold text-indigo-400">1,000 ADA</span>
+            </li>
+            <li className="flex items-center gap-3 text-white/80 group-hover:text-white">
+              <span className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500/70 to-blue-600/70 flex items-center justify-center text-xs text-white">+</span>
+              Giải khuyến khích: <span className="font-semibold text-indigo-400">500 ADA</span>
+            </li>
+          </ul>
+        </div>
+        <Button variant="link" className="text-indigo-400 p-0 flex items-center gap-2 transition-all duration-300 group-hover:text-indigo-300 group-hover:translate-x-1">
+          Tìm hiểu thêm <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </Button>
+      </div>
+    </div>
+
+    {/* Bonus Prizes */}
+    <div className="mt-16 bg-gradient-to-br from-white/5 to-transparent p-8 rounded-xl border border-white/10 transition-all duration-300 hover:border-blue-500/20 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)]">
+      <h3 className="text-2xl font-bold mb-6 flex items-center">
+        <Trophy className="w-6 h-6 mr-3 text-blue-400" />
+        Giải thưởng phụ
+      </h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="p-5 bg-white/5 rounded-lg border border-white/5 transition-all duration-300 hover:bg-white/10 hover:border-blue-500/30 hover:transform hover:-translate-y-1 group">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-indigo-500/30 flex items-center justify-center mb-3">
+            <span className="text-lg">💡</span>
+          </div>
+          <h4 className="font-semibold mb-2 group-hover:text-blue-400 transition-colors">Giải thưởng ý tưởng sáng tạo</h4>
+          <p className="text-white/70 group-hover:text-white transition-colors">
+            <span className="text-blue-400 font-semibold">1,000 ADA</span> cho ý tưởng đột phá nhất
+          </p>
+        </div>
+        <div className="p-5 bg-white/5 rounded-lg border border-white/5 transition-all duration-300 hover:bg-white/10 hover:border-blue-500/30 hover:transform hover:-translate-y-1 group">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-indigo-500/30 flex items-center justify-center mb-3">
+            <span className="text-lg">👥</span>
+          </div>
+          <h4 className="font-semibold mb-2 group-hover:text-blue-400 transition-colors">Giải thưởng cộng đồng</h4>
+          <p className="text-white/70 group-hover:text-white transition-colors">
+            <span className="text-blue-400 font-semibold">500 ADA</span> cho dự án được yêu thích nhất
+          </p>
+        </div>
+        <div className="p-5 bg-white/5 rounded-lg border border-white/5 transition-all duration-300 hover:bg-white/10 hover:border-blue-500/30 hover:transform hover:-translate-y-1 group">
+          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/30 to-indigo-500/30 flex items-center justify-center mb-3">
+            <span className="text-lg">✍️</span>
+          </div>
+          <h4 className="font-semibold mb-2 group-hover:text-blue-400 transition-colors">Giải thưởng bài viết recap</h4>
+          <p className="text-white/70 group-hover:text-white transition-colors">
+            <span className="text-blue-400 font-semibold">300 ADA</span> (3 workshops * 100 ADA)
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Timeline Section */}
       <section id="schedule" className="py-20 bg-black relative">
