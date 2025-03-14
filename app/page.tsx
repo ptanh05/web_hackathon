@@ -79,7 +79,11 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">Đăng ký ngay</Button>
+            <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">
+            <Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
+            Đăng ký ngay
+            </Link>
+            </Button>
             <Button variant="outline" className="border-white/30 hover:bg-white/10 text-lg px-8 py-6 h-auto">
               Tìm hiểu thêm
             </Button>
@@ -575,7 +579,9 @@ export default function Home() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button className="bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-600 hover:to-indigo-600 text-white text-lg px-8 py-6 h-auto">
+              
                 Đăng ký ngay
+              
               </Button>
               <Button variant="outline" className="border-white/30 hover:bg-white/10 text-lg px-8 py-6 h-auto">
                 Liên hệ BTC
