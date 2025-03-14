@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Calendar, Globe, Trophy } from "lucide-react"
 import { GlowingTitle } from "@/components/ui/makeBeauty";
 import { DiagonalMeteors } from "@/components/ui/saobang";
+import { GlowingStars } from "@/components/star/glowingStarsProps";
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
@@ -65,11 +66,14 @@ export default function Home() {
           {/* Logo Cardano - Thay thế bằng logo chính thức khi có */}
           
 
-        <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
-        <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
-        <span className="text-white"> BLOCKCHAIN</span>
-        <span className="block text-white"> HACKATHON 2025</span>
-       </GlowingTitle>
+          <div id="main-title">
+          <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
+          <span className="text-white"> BLOCKCHAIN</span>
+          <span className="block text-white"> HACKATHON 2025</span>
+          <GlowingStars targetSelector="#main-title" count={10} />
+          </GlowingTitle>
+          </div>
 
           <div className="flex items-center justify-center gap-2 mb-8">
             <div className="h-[1px] w-16 bg-white/30"></div>

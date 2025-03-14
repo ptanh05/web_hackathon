@@ -51,8 +51,8 @@ export const DiagonalMeteors: React.FC<MeteorProps> = ({
     // Khởi tạo sao băng
     const createMeteor = (): Meteor => {
       // Khởi tạo vị trí ở 1/3 phía trên bên trái màn hình
-      const xStart = Math.random() * (canvas.width / 3);
-      const yStart = Math.random() * (canvas.height / 3);
+      const xStart = Math.random() * (canvas.width );
+      const yStart = Math.random() * (canvas.height / 2);
       
       return {
         x: xStart,
