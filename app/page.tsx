@@ -11,7 +11,7 @@ export default function Home() {
       <header className="container mx-auto pt-[1rem] pb-[3rem] px-4 flex justify-between items-center z-10 relative">
         <Link href="/" className="flex items-center gap-2">
         </Link>
-        <nav className="hidden md:flex items-center gap-8">
+        
         <div className="absolute top-4 left-4 flex items-center space-x-4">
             <Image
               src="/logo.png"
@@ -28,6 +28,7 @@ export default function Home() {
               className="h-[80px] object-contain"
             />
           </div>
+          <nav className="hidden md:flex items-center gap-8">
           <Link href="#tracks" className="text-sm hover:text-primary transition-colors">
             Tracks
           </Link>
