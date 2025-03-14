@@ -79,7 +79,11 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
-            <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">Đăng ký ngay</Button>
+          <Link href="/register-team">
+            <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">
+              Đăng ký ngay
+            </Button>
+          </Link>
             <Button variant="outline" className="border-white/30 hover:bg-white/10 text-lg px-8 py-6 h-auto">
               Tìm hiểu thêm
             </Button>
