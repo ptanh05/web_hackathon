@@ -44,9 +44,13 @@ export default function Home() {
           </Link>
           <Link href="#rules" className="text-sm hover:text-primary transition-colors"></Link>
         </nav>
-        <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white">
-          Tham gia Discord
-        </Button>
+        <a href="https://t.me/+s3_S_Ce77xJhN2Zl" target="_blank" rel="noopener noreferrer">
+  <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white">
+    Tham gia Telegram 
+  </Button>
+</a>
+
+
       </header>
 
       {/* Hero Section */}
