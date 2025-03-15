@@ -1,10 +1,12 @@
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ArrowRight, Calendar, Globe, Trophy , ClipboardList} from "lucide-react"
-import { GlowingTitle } from "@/components/ui/makeBeauty";
-import { DiagonalMeteors } from "@/components/ui/saobang";
-import { GlowingStars } from "@/components/star/glowingStarsProps";
+import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowRight, Calendar, ClipboardList, Globe, Trophy } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
+import { GlowingTitle } from '@/components/ui/makeBeauty'
+import { DiagonalMeteors } from '@/components/ui/saobang'
+
+//import { GlowingStars } from "@/components/star/glowingStarsProps";
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
@@ -71,7 +73,7 @@ export default function Home() {
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
           <span className="text-white"> BLOCKCHAIN</span>
           <span className="block text-white"> HACKATHON 2025</span>
-          <GlowingStars targetSelector="#main-title" count={10} />
+          {/* <GlowingStars targetSelector="#main-title" count={10} /> */}
           </GlowingTitle>
           </div>
 
