@@ -9,27 +9,31 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Navigation */}
-      <header className="container mx-auto pt-[1rem] pb-[3rem] px-4 flex justify-between items-center z-10 relative">
+      <header className="container mx-auto pt-[1rem] pb-[3rem] px-4 flex items-center justify-between relative z-10">
         <Link href="/" className="flex items-center gap-2">
+          {/* Nếu cần thêm nội dung logo vào đây */}
         </Link>
-        
-        <div className="absolute top-4 left-4 flex items-center space-x-4">
-            <Image
-              src="/logo.png"
-              alt="Cardano Logo"
-              width={80}
-              height={80}
-              className="h-[80px] object-contain"
-            />
-            <Image
-              src="/cardano-ada-logo.png"
-              alt="Cardano Logo"
-              width={50}
-              height={50}
-              className="h-[80px] object-contain"
-            />
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
+
+        {/* Logo */}
+        <div className="flex items-center gap-4">
+          <Image
+            src="/logo.png"
+            alt="Cardano Logo"
+            width={70}
+            height={70}
+            className="h-[80px] object-contain"
+          />
+          <Image
+            src="/cardano-ada-logo.png"
+            alt="Cardano Logo"
+            width={40}
+            height={40}
+            className="h-[80px] object-contain"
+          />
+        </div>
+
+        {/* Navigation */}
+        <nav className="hidden md:flex items-center gap-12 flex-1 justify-center px-15">
           <Link href="#tracks" className="text-sm hover:text-primary transition-colors">
             Tracks
           </Link>
@@ -39,18 +43,14 @@ export default function Home() {
           <Link href="#resources" className="text-sm hover:text-primary transition-colors">
             Tài nguyên
           </Link>
-          <Link href="#faqs" className="text-sm hover:text-primary transition-colors">
-            FAQs
-          </Link>
-          <Link href="#rules" className="text-sm hover:text-primary transition-colors"></Link>
+          
+          
         </nav>
-        <a href="https://t.me/+s3_S_Ce77xJhN2Zl" target="_blank" rel="noopener noreferrer">
-  <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white">
-    Tham gia Telegram 
-  </Button>
-</a>
 
-
+        {/* Button */}
+        <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white ml-auto">
+          Tham gia Discord
+        </Button>
       </header>
 
       {/* Hero Section */}
