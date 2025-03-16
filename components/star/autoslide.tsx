@@ -56,85 +56,96 @@ function AutoSlideTimeline() {
     };
 
   // Initialize events with calculated positions
-  useEffect(() => {
-    const rawEvents: TimelineEvent[] = [
-      {
-        date: "19/03/2025",
-        timestamp: parseDate("19/03/2025"),
-        title: "Mở đăng ký & Bắt đầu nộp dự án",
-        description: "Các đội thi có thể đăng ký và bắt đầu nộp dự án",
-        icon: "🚀"
-      },
-      {
-        date: "13/04/2025",
-        timestamp: parseDate("13/04/2025"),
-        title: "Workshop 1: Blockchain & Cardano",
-        description: "Giới thiệu Blockchain, Cardano Ecosystem và cơ hội của Cardano",
-        icon: "📚"
-      },
-      {
-        date: "20/04/2025",
-        timestamp: parseDate("20/04/2025"),
-        title: "Workshop 2: Building on Cardano",
-        description: "Giới thiệu về các công nghệ nổi bật và công cụ phát triển trên Cardano",
-        icon: "💻"
-      },
-      {
-        date: "04/05/2025",
-        timestamp: parseDate("04/05/2025"),
-        title: "Workshop 3: Hackathon Winning Strategies",
-        description: "Chia sẻ cách thắng cuộc thi hack và kinh nghiệm xây dựng Pitchdex",
-        icon: "🏆"
-      },
-      {
-        date: "06/05/2025",
-        timestamp: parseDate("06/05/2025"),
-        title: "Deadline đăng ký & nộp dự án",
-        description: "Hạn chót để đăng ký và nộp dự án",
-        icon: "⏰"
-      },
-      {
-        date: "24-25/05/2025",
-        timestamp: parseDate("24/05/2025"),
-        title: "Hackday & Vòng chung kết",
-        description: "Các đội vào vòng chung kết thuyết trình và công bố kết quả",
-        icon: "🎯"
-      },
-    ];
+ // Initialize events with calculated positions
+useEffect(() => {
+  const rawEvents: TimelineEvent[] = [
+    {
+      date: "19/03/2025",
+      timestamp: parseDate("19/03/2025"),
+      title: "Mở đăng ký & Bắt đầu nộp dự án",
+      description: "Các đội thi có thể đăng ký và bắt đầu nộp dự án",
+      icon: "🚀"
+    },
+    {
+      date: "13/04/2025",
+      timestamp: parseDate("13/04/2025"),
+      title: "Workshop 1: Blockchain & Cardano",
+      description: "Giới thiệu Blockchain, Cardano Ecosystem và cơ hội của Cardano",
+      icon: "📚"
+    },
+    {
+      date: "20/04/2025",
+      timestamp: parseDate("20/04/2025"),
+      title: "Workshop 2: Building on Cardano",
+      description: "Giới thiệu về các công nghệ nổi bật và công cụ phát triển trên Cardano",
+      icon: "💻"
+    },
+    {
+      date: "04/05/2025",
+      timestamp: parseDate("04/05/2025"),
+      title: "Workshop 3: Hackathon Winning Strategies",
+      description: "Chia sẻ cách thắng cuộc thi hack và kinh nghiệm xây dựng Pitchdex",
+      icon: "🏆"
+    },
+    {
+      date: "06/05/2025",
+      timestamp: parseDate("06/05/2025"),
+      title: "Deadline đăng ký & nộp dự án",
+      description: "Hạn chót để đăng ký và nộp dự án",
+      icon: "⏰"
+    },
+    {
+      date: "24-25/05/2025",
+      timestamp: parseDate("24/05/2025"),
+      title: "Hackday & Vòng chung kết",
+      description: "Các đội vào vòng chung kết thuyết trình và công bố kết quả",
+      icon: "🎯"
+    },
+  ];
 
-    // Add buffer days before first event and after last event
-    // This creates space at beginning and end of timeline
-    const earliestDate = new Date(rawEvents[0].timestamp);
-    earliestDate.setDate(earliestDate.getDate() - 10); // 10 days before first event
+  // Add buffer days before first event and after last event
+  const earliestDate = new Date(rawEvents[0].timestamp);
+  earliestDate.setDate(earliestDate.getDate() - 10); // 10 days before first event
+  
+  const latestDate = new Date(rawEvents[rawEvents.length - 1].timestamp);
+  latestDate.setDate(latestDate.getDate() + 10); // 10 days after last event
+  
+  const timeRange = latestDate.getTime() - earliestDate.getTime();
+  
+  // Phân bố đều các sự kiện trên timeline
+  const eventsWithPositions = rawEvents.map((event, index) => {
+    // Tính vị trí dựa trên thời gian, với padding
+    const rawPosition = ((event.timestamp - earliestDate.getTime()) / timeRange) * 100;
     
-    const latestDate = new Date(rawEvents[rawEvents.length - 1].timestamp);
-    latestDate.setDate(latestDate.getDate() + 10); // 10 days after last event
+    // Áp dụng phạm vi từ 5-85% thay vì 3-93% để đảm bảo sự kiện cuối không bị tràn ra ngoài
+    let yPosition = 5 + (rawPosition * 0.8);
     
-    const timeRange = latestDate.getTime() - earliestDate.getTime();
-    
-    // Initial positions calculation with wider spacing
-    const eventsWithPositions = rawEvents.map((event, index) => {
-      // Calculate raw position based on time, with padding
-      const rawPosition = ((event.timestamp - earliestDate.getTime()) / timeRange) * 100;
-      
-      // For more spacing, map 0-100% to smaller range like 5-95%
-      let yPosition = 3 + (rawPosition * 0.9); // Map 0-100% to 3-93%
-      
-      return { ...event, yPosition };
-    });
-    
-    // Second pass - enforce minimum vertical spacing between any two events
-    const finalEvents = [...eventsWithPositions];
-    const minSpacing = 20; // Minimum 20% gap between events
-    
-    for (let i = 1; i < finalEvents.length; i++) {
-      if (finalEvents[i].yPosition! - finalEvents[i-1].yPosition! < minSpacing) {
-        finalEvents[i].yPosition = finalEvents[i-1].yPosition! + minSpacing;
-      }
+    return { ...event, yPosition };
+  });
+  
+  // Giảm minSpacing xuống để tránh bị đẩy quá xa
+  const finalEvents = [...eventsWithPositions];
+  const minSpacing = 15; // Giảm từ 20% xuống 15% để tránh chồng lấp
+  
+  for (let i = 1; i < finalEvents.length; i++) {
+    if (finalEvents[i].yPosition! - finalEvents[i-1].yPosition! < minSpacing) {
+      finalEvents[i].yPosition = finalEvents[i-1].yPosition! + minSpacing;
     }
+  }
+  
+  // Đảm bảo sự kiện cuối cùng không vượt quá 90% chiều cao
+  if (finalEvents[finalEvents.length - 1].yPosition! > 90) {
+    const lastPosition = finalEvents[finalEvents.length - 1].yPosition!;
+    const scale = 90 / lastPosition;
     
-    setEvents(finalEvents);
-  }, []);
+    // Nén lại toàn bộ timeline nếu vượt quá
+    finalEvents.forEach((event, i) => {
+      event.yPosition = event.yPosition! * scale;
+    });
+  }
+  
+  setEvents(finalEvents);
+}, []);
   
   // Cập nhật tiến trình và xác định sự kiện hiện tại dựa trên ngày
    // Cập nhật tiến trình và xác định sự kiện hiện tại dựa trên ngày
