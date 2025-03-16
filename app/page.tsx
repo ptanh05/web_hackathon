@@ -1,38 +1,52 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { ArrowRight, Calendar, ClipboardList, Globe, Trophy } from 'lucide-react'
-
-import { Button } from '@/components/ui/button'
-import { GlowingTitle } from '@/components/ui/makeBeauty'
-import { DiagonalMeteors } from '@/components/ui/saobang'
-
-//import { GlowingStars } from "@/components/star/glowingStarsProps";
+import Link from "next/link"
+import Image from "next/image"
+import { Button } from "@/components/ui/button"
+import { ArrowRight, Calendar, Globe, Trophy , ClipboardList} from "lucide-react"
+import { GlowingTitle } from "@/components/ui/makeBeauty";
+import { DiagonalMeteors } from "@/components/ui/saobang";
+import { GlowingStars } from "@/components/star/glowingStarsProps";
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Navigation */}
-      <header className="container mx-auto pt-[1rem] pb-[3rem] px-4 flex items-center justify-between relative z-10">
-        <Link href="/" className="flex items-center gap-2">
-          {/* Nếu cần thêm nội dung logo vào đây */}
-        </Link>
+      <header className="fixed top-0 left-0 w-full z-50 bg-black shadow-md py-2 h-[70px] flex items-center">
+        <div className="container mx-auto px-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            {/* Nếu cần thêm nội dung logo vào đây */}
+          </Link>
 
-        {/* Logo */}
-        <div className="flex items-center gap-4">
-          <Image
-            src="/logo.png"
-            alt="Cardano Logo"
-            width={70}
-            height={70}
-            className="h-[80px] object-contain"
-          />
-          <Image
-            src="/cardano-ada-logo.png"
-            alt="Cardano Logo"
-            width={40}
-            height={40}
-            className="h-[80px] object-contain"
-          />
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Cardano Logo" width={40} height={40} className="h-[50px] object-contain" />
+            <Image src="/cardano-ada-logo.png" alt="Cardano Logo" width={25} height={25} className="h-[50px] object-contain" />
+          </div>
+
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
+            <Link href="#tracks" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Tracks
+            </Link>
+            <Link href="#schedule" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Lịch trình
+            </Link>
+            <Link href="#criteria" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Tiêu chí
+            </Link>
+            <Link href="#resources" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Tài nguyên
+            </Link>
+            
+            <Link href="#rules" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Quy định
+            </Link>
+          </nav>
+
+          {/* Button */}
+          <Button className="bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white ml-auto py-2 px-4 text-sm">
+            Tham gia Discord
+          </Button>
         </div>
+
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-12 flex-1 justify-center px-15">
@@ -54,32 +68,31 @@ export default function Home() {
           Tham gia Discord
         </Button>
         </a>
+
       </header>
 
       {/* Hero Section */}
-      <section className="relative flex-1 flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative flex-1 flex flex-col items-center justify-center overflow-hidden pt-[100px]">
         {/* Background Grid */}
         <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute inset-0 bg-grid-white/[0.2] bg-[length:50px_50px]" />
         </div>
-         {/* Diagonal Meteors Effect */}
-         <DiagonalMeteors count={25} speed={3} />
+        
+        {/* Diagonal Meteors Effect */}
+        <DiagonalMeteors count={25} speed={3} />
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-0"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 z-10 text-center">
-          {/* Logo Cardano - Thay thế bằng logo chính thức khi có */}
-          
-
           <div id="main-title">
-          <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
-          <span className="text-white"> BLOCKCHAIN</span>
-          <span className="block text-white"> HACKATHON 2025</span>
-          {/* <GlowingStars targetSelector="#main-title" count={10} /> */}
-          </GlowingTitle>
+            <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
+              <span className="text-white"> BLOCKCHAIN</span>
+              <span className="block text-white"> HACKATHON 2025</span>
+              <GlowingStars targetSelector="#main-title" count={10} />
+            </GlowingTitle>
           </div>
 
           <div className="flex items-center justify-center gap-2 mb-8">
@@ -92,9 +105,9 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">
-            <Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
-            Đăng ký ngay
-            </Link>
+              <Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
+                Đăng ký ngay
+              </Link>
             </Button>
             <Button variant="outline" className="border-white/30 hover:bg-white/10 text-lg px-8 py-6 h-auto">
               Tìm hiểu thêm
