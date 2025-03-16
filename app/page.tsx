@@ -48,11 +48,12 @@ export default function Home() {
           
           
         </nav>
-
+        <a href="https://discord.gg/uUTWNksZ" target="_blank" rel="noopener noreferrer">
         {/* Button */}
         <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white ml-auto">
           Tham gia Discord
         </Button>
+        </a>
       </header>
 
       {/* Hero Section */}
@@ -592,7 +593,7 @@ export default function Home() {
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
                   <span className="text-white/80">
                     Discord:{" "}
-                    <a href="#" className="text-blue-400 hover:underline">
+                    <a href="https://discord.com/invite/uUTWNksZ" className="text-blue-400 hover:underline">
                       Tham gia Discord
                     </a>
                   </span>
@@ -738,9 +739,16 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <Link href="/" className="flex items-center gap-2 mb-4">
-                <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center">
-                  <span className="text-xl font-bold">CB</span>
-                </div>
+                
+                
+          <Image
+            src="/logo.png"
+            alt="Cardano Logo"
+            width={70}
+            height={70}
+            className="h-[80px] object-contain"
+          />
+                
                 <span className="font-bold text-lg">Cardano Blockchain Hackathon</span>
               </Link>
               <p className="text-white/70 mb-4">Cuộc thi hackathon về công nghệ Cardano Blockchain tại Việt Nam.</p>
