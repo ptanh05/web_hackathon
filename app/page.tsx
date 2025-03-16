@@ -102,8 +102,9 @@ export default function Home() {
             <Button
               className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto"
               color="rgba(255, 255, 255, 0.7)"
-            >
-              Đăng ký ngay
+            ><Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
+            Đăng ký ngay
+            </Link>
             </Button>
             <Button variant="outline" className="border-white/30 hover:bg-white/10 text-lg px-8 py-6 h-auto">
               Tìm hiểu thêm
