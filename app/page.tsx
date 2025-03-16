@@ -29,7 +29,10 @@ export default function Home() {
             <Image src="/logo.png" alt="Cardano Logo" width={60} height={60} className="h-[50px] object-contain" />
             <Image src="/cardano-ada-logo.png" alt="Cardano Logo" width={35} height={35} className="h-[50px] object-contain" />
           </div>
-          <nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
+         
+            {/* Social Links */}
+{/* Navigation */}
+<nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
   {[
     { href: '#tracks', text: 'Tracks' },
     { href: '#schedule', text: 'Lịch trình' },
@@ -40,19 +43,19 @@ export default function Home() {
     <SmoothScrollLink
       key={item.href}
       href={item.href}
-      className="relative px-2 py-1 text-sm font-medium text-gray-300 transition-all duration-300 
-                hover:text-white group"
+      className="relative px-3 py-2 text-sm font-medium text-gray-300 transition-all duration-300 
+                hover:scale-105 group"
     >
-      <span className="relative z-10 group-hover:text-blue-400">{item.text}</span>
+      <span className="relative z-10 transition-all duration-300 group-hover:text-blue-300 
+                      group-hover:drop-shadow-[0_0_12px_rgba(96,165,250,0.7)]">
+        {item.text}
+      </span>
       <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-500 
                 transform scale-x-0 origin-center transition-transform duration-300 ease-out 
-                group-hover:scale-x-100"></span>
+                group-hover:scale-x-100 group-hover:shadow-[0_0_10px_rgba(96,165,250,0.5)]"></span>
     </SmoothScrollLink>
   ))}
 </nav>
-            {/* Social Links */}
-
-          {/* Button */}
           <a href="http://discord.gg/uUTWNksZ">
           <Button className="bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white ml-auto py-2 px-4 text-sm">
             Tham gia Discord
