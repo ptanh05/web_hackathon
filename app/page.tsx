@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Calendar, ClipboardList, Globe, Trophy } from 'lucide-react'
 import { Github, Twitter, Linkedin } from "lucide-react";
+import SmoothScrollLink from '@/components/star/smoothScroll';
 import { Button } from '@/components/ui/button'
 import { GlowingTitle } from '@/components/ui/makeBeauty'
 import { DiagonalMeteors } from '@/components/ui/saobang'
@@ -28,25 +29,28 @@ export default function Home() {
             <Image src="/logo.png" alt="Cardano Logo" width={60} height={60} className="h-[50px] object-contain" />
             <Image src="/cardano-ada-logo.png" alt="Cardano Logo" width={35} height={35} className="h-[50px] object-contain" />
           </div>
-
-          {/* Navigation */}
           <nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
-            <Link href="#tracks" className="text-sm text-gray-300 transition-all transform hover:scale-110 hover:text-[#00A3FF]">
-              Tracks
-            </Link>
-            <Link href="#schedule" className="text-sm text-gray-300 transition-all transform hover:scale-110 hover:text-[#00A3FF]">
-              Lịch trình
-            </Link>
-            <Link href="#criteria" className="text-sm text-gray-300 transition-all transform hover:scale-110 hover:text-[#00A3FF]">
-              Tiêu chí
-            </Link>
-            <Link href="#resources" className="text-sm text-gray-300 transition-all transform hover:scale-110 hover:text-[#00A3FF]">
-              Tài nguyên
-            </Link>
-            <Link href="#rules" className="text-sm text-gray-300 transition-all transform hover:scale-110 hover:text-[#00A3FF]">
-              Quy định
-            </Link>
-          </nav>
+  {[
+    { href: '#tracks', text: 'Tracks' },
+    { href: '#schedule', text: 'Lịch trình' },
+    { href: '#criteria', text: 'Tiêu chí' },
+    { href: '#resources', text: 'Tài nguyên' },
+    { href: '#rules', text: 'Quy định' },
+  ].map((item) => (
+    <SmoothScrollLink
+      key={item.href}
+      href={item.href}
+      className="relative px-2 py-1 text-sm font-medium text-gray-300 transition-all duration-300 
+                hover:text-white group"
+    >
+      <span className="relative z-10 group-hover:text-blue-400">{item.text}</span>
+      <span className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-blue-400 to-indigo-500 
+                transform scale-x-0 origin-center transition-transform duration-300 ease-out 
+                group-hover:scale-x-100"></span>
+    </SmoothScrollLink>
+  ))}
+</nav>
+            {/* Social Links */}
 
           {/* Button */}
           <Button className="bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white ml-auto py-2 px-4 text-sm">
