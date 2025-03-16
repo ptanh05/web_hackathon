@@ -25,14 +25,14 @@ export default function Home() {
           </Link>
 
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <div className=" absolute left-4 flex items-center gap-3 ">
             <Image src="/logo.png" alt="Cardano Logo" width={60} height={60} className="h-[50px] object-contain" />
             <Image src="/cardano-ada-logo.png" alt="Cardano Logo" width={35} height={35} className="h-[50px] object-contain" />
           </div>
 
           {/* Social Links */}
           {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
+          <nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8 pl-[120px]">
             {[
               { href: '#tracks', text: 'Tracks' },
               { href: '#schedule', text: 'Lịch trình' },
