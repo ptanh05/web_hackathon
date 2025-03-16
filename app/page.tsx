@@ -97,7 +97,6 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">
-            <Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
             Đăng ký ngay
             </Link>
             </Button>
