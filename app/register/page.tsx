@@ -76,13 +76,12 @@ export default function RegisterPage() {
                       className={`flex flex-col items-center ${i < step ? "text-cyan-400" : i === step ? "text-white" : "text-white/40"}`}
                     >
                       <div
-                        className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${
-                          i < step
+                        className={`w-10 h-10 rounded-full flex items-center justify-center mb-2 ${i < step
                             ? "bg-cyan-500 text-black"
                             : i === step
                               ? "bg-white/10 border border-white"
                               : "bg-white/5 border border-white/20"
-                        }`}
+                          }`}
                       >
                         {i}
                       </div>

@@ -11,10 +11,10 @@ interface SmoothScrollLinkProps {
 const SmoothScrollLink = ({ href, children, className = '' }: SmoothScrollLinkProps) => {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
-    
+
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       const offset = 80; // Điều chỉnh độ lệch để tính đến thanh điều hướng cố định
       const bodyRect = document.body.getBoundingClientRect().top;
