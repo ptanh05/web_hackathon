@@ -1,12 +1,18 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Calendar, ClipboardList, Globe, Trophy } from 'lucide-react'
-
+import { Github, Twitter, Linkedin } from "lucide-react";
 import { Button } from '@/components/ui/button'
 import { GlowingTitle } from '@/components/ui/makeBeauty'
 import { DiagonalMeteors } from '@/components/ui/saobang'
 import AutoSlideTimeline from "../components/star/autoslide"
 //import { GlowingStars } from "@/components/star/glowingStarsProps";
+const socialLinks = [
+  { name: "twitter", icon: <Twitter size={24} />, link: "https://twitter.com" },
+  { name: "linkedin", icon: <Linkedin size={24} />, link: "https://linkedin.com" },
+  { name: "github", icon: <Github size={24} />, link: "https://github.com" },
+];
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
@@ -974,25 +980,20 @@ export default function Home() {
         <p className="text-white/70 mb-6 group-hover:text-white transition-colors duration-300">
           Cuộc thi hackathon về công nghệ Cardano Blockchain tại Việt Nam, được tổ chức từ 15/03 - 31/05/2025.
         </p>
-        <div className="flex gap-4">
-          {[
-            { name: "twitter", icon: "𝕏", color: "hover:bg-gray-800" },
-            { name: "facebook", icon: "f", color: "hover:bg-blue-700" },
-            { name: "instagram", icon: "📷", color: "hover:bg-pink-600" },
-            { name: "github", icon: "GH", color: "hover:bg-gray-700" }
-          ].map((social) => (
-            <a
-              key={social.name}
-              href="#"
-              className={`w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center 
-                  border border-transparent transition-all duration-300
-                  hover:border-white/20 hover:scale-110 ${social.color} hover:shadow-lg`}
-              aria-label={social.name}
-            >
-              <span className="text-sm">{social.icon}</span>
-            </a>
-          ))}
-        </div>
+        <div className="flex gap-6">
+      {socialLinks.map((social) => (
+        <a
+          key={social.name}
+          href={social.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-500 hover:text-white transition-all duration-300"
+          aria-label={social.name}
+        >
+          {social.icon}
+        </a>
+      ))}
+    </div>
       </div>
 
       <div>
