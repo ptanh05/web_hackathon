@@ -17,74 +17,76 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
       {/* Navigation */}
-      <header className="container mx-auto pt-[1rem] pb-[3rem] px-4 flex items-center justify-between relative z-10">
-        <Link href="/" className="flex items-center gap-2">
-          {/* Nếu cần thêm nội dung logo vào đây */}
-        </Link>
+      <header className="fixed top-0 left-0 w-full z-50 bg-black shadow-md py-2 h-[70px] flex items-center">
+        <div className="container mx-auto px-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2">
+            {/* Nếu cần thêm nội dung logo vào đây */}
+          </Link>
 
-        {/* Logo */}
-        <div className="flex items-center gap-4">
-          <Image
-            src="/logo.png"
-            alt="Cardano Logo"
-            width={70}
-            height={70}
-            className="h-[80px] object-contain"
-          />
-          <Image
-            src="/cardano-ada-logo.png"
-            alt="Cardano Logo"
-            width={40}
-            height={40}
-            className="h-[80px] object-contain"
-          />
+          {/* Logo */}
+          <div className="flex items-center gap-3">
+            <Image src="/logo.png" alt="Cardano Logo" width={70} height={70} className="h-[50px] object-contain" />
+            <Image src="/cardano-ada-logo.png" alt="Cardano Logo" width={40} height={40} className="h-[50px] object-contain" />
+          </div>
+
+          {/* Navigation */}
+          <nav className="hidden md:flex items-center gap-6 flex-1 justify-center px-8">
+            <Link href="#tracks" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Tracks
+            </Link>
+            <Link href="#schedule" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Lịch trình
+            </Link>
+            <Link href="#criteria" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Tiêu chí
+            </Link>
+            <Link href="#resources" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Tài nguyên
+            </Link>
+            
+            <Link href="#rules" className="text-sm text-gray-300 hover:text-white transition-colors">
+              Quy định
+            </Link>
+          </nav>
+
+          {/* Button */}
+          <Button className="bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white ml-auto py-2 px-4 text-sm">
+            Tham gia Discord
+          </Button>
         </div>
-
-        {/* Navigation */}
-        <nav className="hidden md:flex items-center gap-12 flex-1 justify-center px-15">
-          <Link href="#tracks" className="text-sm hover:text-primary transition-colors">
-            Tracks
-          </Link>
-          <Link href="#schedule" className="text-sm hover:text-primary transition-colors">
-            Lịch trình
-          </Link>
-          <Link href="#resources" className="text-sm hover:text-primary transition-colors">
-            Tài nguyên
-          </Link>
-          
-          
-        </nav>
-
-        {/* Button */}
-        <Button className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white ml-auto">
-          Tham gia Discord
-        </Button>
       </header>
 
       {/* Hero Section */}
-      <section className="relative flex-1 flex flex-col items-center justify-center overflow-hidden">
+      <section className="relative flex-1 flex flex-col items-center justify-center overflow-hidden pt-[100px]">
         {/* Background Grid */}
         <div className="absolute inset-0 z-0 opacity-20">
           <div className="absolute inset-0 bg-grid-white/[0.2] bg-[length:50px_50px]" />
         </div>
-         {/* Diagonal Meteors Effect */}
-         <DiagonalMeteors count={25} speed={3} />
+        
+        {/* Diagonal Meteors Effect */}
+        <DiagonalMeteors count={25} speed={3} />
 
         {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-0"></div>
 
         {/* Content */}
         <div className="container mx-auto px-4 z-10 text-center">
-          {/* Logo Cardano - Thay thế bằng logo chính thức khi có */}
-          
-
           <div id="main-title">
+<<<<<<< HEAD
           <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
           <span className="text-white"> BLOCKCHAIN</span>
           <span className="block text-white"> HACKATHON 2025</span>
           {/* <GlowingStars targetSelector="#main-title" count={10} /> */}
           </GlowingTitle>
+=======
+            <GlowingTitle className="text-5xl md:text-7xl font-extrabold mb-4 tracking-tighter">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-500">CARDANO</span>
+              <span className="text-white"> BLOCKCHAIN</span>
+              <span className="block text-white"> HACKATHON 2025</span>
+              <GlowingStars targetSelector="#main-title" count={10} />
+            </GlowingTitle>
+>>>>>>> 8300a80 (Capnhat Header)
           </div>
 
           <div className="flex items-center justify-center gap-2 mb-8">
@@ -97,9 +99,9 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center mt-8">
             <Button className="bg-white text-black hover:bg-white/90 text-lg px-8 py-6 h-auto">
-            <Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
-            Đăng ký ngay
-            </Link>
+              <Link href="https://dorahacks.io/hackathon/cardano-blockchain-hackathon2025/detail" target="_blank" rel="noopener noreferrer">
+                Đăng ký ngay
+              </Link>
             </Button>
             <Button variant="outline" className="border-white/30 hover:bg-white/10 text-lg px-8 py-6 h-auto">
               Tìm hiểu thêm
@@ -373,6 +375,7 @@ export default function Home() {
       </p>
     </div>
 
+<<<<<<< HEAD
     <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {/* Card 1 */}
       <div className="bg-gradient-to-br from-white/5 to-white/[0.02] p-6 rounded-lg border border-white/10
@@ -383,6 +386,80 @@ export default function Home() {
             flex items-center justify-center mb-6 shadow-xl
             transition-all duration-500 transform group-hover:scale-110 group-hover:rotate-3">
           <span className="text-2xl font-bold text-white">50%</span>
+=======
+      {/* Evaluation Criteria */}
+      <section id="criteria" className="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Tiêu chí đánh giá</h2>
+            <p className="text-white/70 max-w-2xl mx-auto">Dự án của bạn sẽ được đánh giá dựa trên các tiêu chí sau</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4">
+                <span className="text-xl font-bold text-white">50%</span>
+              </div>
+              <h3 className="text-xl font-bold mb-4">Sản phẩm</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Mức độ hoàn thiện của dự án (prototype hoặc MVP)</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Tính khả thi trong việc triển khai và ứng dụng thực tế</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Chất lượng và hiệu quả của mã nguồn dự án</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4">
+                <span className="text-xl font-bold text-white">40%</span>
+              </div>
+              <h3 className="text-xl font-bold mb-4">Pitch Deck</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Tính sáng tạo và thuyết phục của bản pitch deck</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Cấu trúc rõ ràng, trình bày dễ hiểu</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Khả năng thuyết trình và trả lời câu hỏi từ giám khảo</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-lg border border-white/10">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center mb-4">
+                <span className="text-xl font-bold text-white">10%</span>
+              </div>
+              <h3 className="text-xl font-bold mb-4">Khác</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Sự phối hợp trong đội ngũ và khả năng làm việc nhóm</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Tiềm năng phát triển và khả năng mở rộng của dự án</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2"></div>
+                  <span className="text-white/80">Kết quả bình chọn từ cộng đồng</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+>>>>>>> 8300a80 (Capnhat Header)
         </div>
         
         <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-400 transition-colors duration-300">Sản phẩm</h3>
