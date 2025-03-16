@@ -14,9 +14,10 @@ interface TimelineEvent {
 
 function AutoSlideTimeline() {
   const [activeEvent, setActiveEvent] = useState<number>(0);
+  const [currentEvent, setCurrentEvent] = useState<number>(0); // Event hiện tại dựa vào thời gian thực
   const [currentProgress, setCurrentProgress] = useState<number>(0); // 0 to 100
   const [events, setEvents] = useState<TimelineEvent[]>([]);
-  const [currentDate, setCurrentDate] = useState<Date>(new Date('2025-03-15')); // Ngày hiện tại (15/3/2025)
+  const [currentDate, setCurrentDate] = useState<Date>(new Date()); // Lấy ngày hiện tại thực tế
   const timelineRef = useRef<HTMLDivElement | null>(null);
   
   // Parse string date to timestamp
@@ -30,6 +31,29 @@ function AutoSlideTimeline() {
     const [day, month, year] = dateStr.split("/").map(Number);
     return new Date(year, month - 1, day).getTime();
   }
+
+  // Cập nhật ngày hiện tại mỗi giây
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentDate(new Date());
+    }, 1000);
+    
+    return () => clearInterval(timer);
+  }, []);
+
+  // Chuyển đổi ngày hiện tại thành ngày demo 2025 (chỉ dùng cho mục đích demo)
+    // Chuyển đổi ngày hiện tại thành ngày demo 2025 (chỉ dùng cho mục đích demo)
+    const getDemoCurrentDate = () => {
+      // Lấy ngày hiện tại từ state (cập nhật mỗi giây)
+      const now = currentDate;
+      
+      // Tạo ngày demo bằng cách giữ nguyên ngày/tháng/giờ/phút/giây hiện tại,
+      // chỉ đổi năm thành 2025
+      const demoDate = new Date(now);
+      demoDate.setFullYear(2025);
+      
+      return demoDate;
+    };
 
   // Initialize events with calculated positions
   useEffect(() => {
@@ -110,36 +134,58 @@ function AutoSlideTimeline() {
     }
     
     setEvents(finalEvents);
+  }, []);
+  
+  // Cập nhật tiến trình và xác định sự kiện hiện tại dựa trên ngày
+   // Cập nhật tiến trình và xác định sự kiện hiện tại dựa trên ngày
+   useEffect(() => {
+    if (events.length === 0) return;
     
-    // Calculate current position with respect to the buffered timeline
-    const now = currentDate.getTime();
+    // Lấy ngày demo (2025) dựa trên ngày thực tế
+    const demoDate = getDemoCurrentDate();
     
-    // If before buffer start date
-    if (now < earliestDate.getTime()) {
+    // Xác định ngày bắt đầu và kết thúc CHÍNH THỨC của cuộc thi
+    const startDate = new Date(2025, 2, 19); // 19/03/2025 - ngày bắt đầu cuộc thi
+    const lastEventDate = new Date(events[events.length - 1].timestamp);
+    const endDate = new Date(2025, 4, 31); // 31/05/2025 - kết thúc cuộc thi
+    
+    const now = demoDate.getTime();
+    const startTime = startDate.getTime();
+    const endTime = endDate.getTime();
+    
+    // Tính toán tiến độ dựa trên khoảng thời gian từ ngày bắt đầu đến kết thúc
+    
+    // Nếu chưa đến ngày bắt đầu cuộc thi
+    if (now < startTime) {
       setCurrentProgress(0);
-      setActiveEvent(0);
+      setCurrentEvent(0); // Sự kiện đầu tiên
       return;
     }
     
-    // If after buffer end date
-    if (now > latestDate.getTime()) {
+    // Nếu đã qua ngày kết thúc cuộc thi
+    if (now > endTime) {
       setCurrentProgress(100);
-      setActiveEvent(rawEvents.length - 1);
+      setCurrentEvent(events.length - 1); // Sự kiện cuối cùng
       return;
     }
     
-    // Calculate current progress on buffered timeline
-    const progress = ((now - earliestDate.getTime()) / timeRange) * 100;
+    // Tính toán tiến độ thực tế (chỉ tính từ ngày bắt đầu cuộc thi)
+    const totalDuration = endTime - startTime;
+    const elapsedDuration = now - startTime;
+    const progress = (elapsedDuration / totalDuration) * 100;
+    
     setCurrentProgress(progress);
     
-    // Find current active event
-    for (let i = 0; i < rawEvents.length - 1; i++) {
-      if (now >= rawEvents[i].timestamp && now < rawEvents[i+1].timestamp) {
-        setActiveEvent(i);
+    // Find current event based on time
+    for (let i = 0; i < events.length - 1; i++) {
+      if (now >= events[i].timestamp && now < events[i+1].timestamp) {
+        setCurrentEvent(i);
         break;
+      } else if (i === events.length - 2 && now >= events[i+1].timestamp) {
+        setCurrentEvent(i+1);
       }
     }
-  }, [currentDate]);
+  }, [events, currentDate]);
 
   const handleEventChange = (index: number): void => {
     setActiveEvent(index);
@@ -147,7 +193,7 @@ function AutoSlideTimeline() {
 
   // Function to format date for display
   const formatTimeRemaining = (targetDate: number): string => {
-    const now = currentDate.getTime();
+    const now = getDemoCurrentDate().getTime();
     const diff = targetDate - now;
     
     // If past date
@@ -184,7 +230,7 @@ function AutoSlideTimeline() {
       {/* Current date and progress indicator */}
       <div className="flex justify-between items-center mb-6 px-4">
         <div className="bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-blue-500/20 shadow-glow">
-          <span>Ngày hiện tại: {currentDate.toLocaleDateString('vi-VN')}</span>
+          <span>Ngày hiện tại: {getDemoCurrentDate().toLocaleDateString('vi-VN')}</span>
         </div>
         <div className="bg-blue-500/20 text-blue-400 px-4 py-2 rounded-full text-sm font-medium backdrop-blur-sm border border-blue-500/20 shadow-glow">
           <span>Tiến độ cuộc thi: {Math.round(currentProgress)}%</span>
@@ -211,16 +257,19 @@ function AutoSlideTimeline() {
           >
             <div className="absolute w-6 h-6 -left-1 -top-1 rounded-full bg-blue-400 animate-ping opacity-50"></div>
             <div className="absolute -left-[85px] -top-3 bg-blue-900/90 px-2 py-0.5 rounded text-xs whitespace-nowrap border border-blue-500/30 float-animation backdrop-blur-sm shadow-glow-sm">
-              Hôm nay: {currentDate.toLocaleDateString('vi-VN')}
+              Hôm nay: {getDemoCurrentDate().toLocaleDateString('vi-VN')}
             </div>
           </div>
         </div>
 
         {/* Event Markers */}
         {events.map((event, index) => {
-          const isPast = event.timestamp < currentDate.getTime();
-          const isCurrent = activeEvent === index;
-          const isUpcoming = event.timestamp > currentDate.getTime();
+          // Xác định trạng thái của sự kiện dựa vào ngày thực tế
+          const demoNow = getDemoCurrentDate().getTime();
+          const isPast = event.timestamp < demoNow;
+          const isRealCurrent = currentEvent === index; // Sự kiện đang diễn ra dựa vào thời gian
+          const isSelected = activeEvent === index; // Sự kiện được chọn bởi người dùng
+          const isUpcoming = event.timestamp > demoNow;
           
           return (
             <div 
@@ -234,7 +283,7 @@ function AutoSlideTimeline() {
                 transform: 'translateY(-50%)',
               }}
               className={`flex flex-col md:flex-row items-center group transition-all duration-500 ${
-                activeEvent === index 
+                isSelected 
                   ? "opacity-100 scale-100 z-20" 
                   : "opacity-70 hover:opacity-90 hover:scale-[1.02]"
               }`}
@@ -245,34 +294,34 @@ function AutoSlideTimeline() {
                   <div className={`
                     bg-gradient-to-r 
                     ${isPast ? "from-emerald-600/80 to-blue-600/80" : 
-                      isCurrent ? "from-blue-600/80 to-indigo-600/80 gradient-flow" : 
+                      isRealCurrent ? "from-blue-600/80 to-indigo-600/80 gradient-flow" : 
                       "from-gray-600/70 to-slate-600/70"}
                     backdrop-blur-sm p-6 rounded-lg 
                     shadow-[0_8px_30px_rgb(59,130,246,0.33)] md:max-w-sm w-full border border-blue-500/20 
                     transition-all duration-500 ease-in-out cursor-pointer card-glow
-                    ${activeEvent === index ? "hover:shadow-[0_10px_40px_rgb(59,130,246,0.5)] hover:translate-y-[-5px] hover:border-blue-400/40" : ""}`}
+                    ${isSelected ? "hover:shadow-[0_10px_40px_rgb(59,130,246,0.5)] hover:translate-y-[-5px] hover:border-blue-400/40" : ""}`}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
                     
                     {/* Animated particles */}
-                    {isCurrent && <div className="card-particles"></div>}
+                    {isRealCurrent && <div className="card-particles"></div>}
                     
-                    {/* Status badge */}
+                    {/* Status badge - Chỉ hiển thị "Hiện tại" cho sự kiện đang thực sự diễn ra */}
                     <div className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-medium
                       ${isPast 
                         ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" 
-                        : isCurrent 
+                        : isRealCurrent 
                           ? "bg-blue-500/20 text-blue-300 border border-blue-500/30 animate-pulse-subtle" 
                           : "bg-gray-500/20 text-gray-300 border border-gray-500/30"}`}
                     >
-                      {isPast ? "Đã qua" : isCurrent ? "Hiện tại" : formatTimeRemaining(event.timestamp)}
+                      {isPast ? "Đã qua" : isRealCurrent ? "Hiện tại" : formatTimeRemaining(event.timestamp)}
                     </div>
                     
                     {/* Icon with rotating animation when active */}
                     <div className={`absolute -right-3 -top-3 w-12 h-12 
-                        ${isPast ? "bg-emerald-500" : isCurrent ? "bg-blue-500 icon-glow" : "bg-gray-500"}
+                        ${isPast ? "bg-emerald-500" : isRealCurrent ? "bg-blue-500 icon-glow" : "bg-gray-500"}
                         rounded-full flex items-center justify-center 
-                        transform ${activeEvent === index ? "animate-pulse rotate-0" : "-rotate-12"} 
+                        transform ${isSelected ? "animate-pulse rotate-0" : "-rotate-12"} 
                         group-hover:rotate-0 transition-transform duration-500 border border-black/50`}>
                       <span className="text-lg">{event.icon}</span>
                     </div>
@@ -290,12 +339,12 @@ function AutoSlideTimeline() {
                   className={`w-6 h-6 
                     ${isPast 
                       ? "bg-gradient-to-r from-emerald-500 to-blue-500" 
-                      : isCurrent 
+                      : isRealCurrent 
                         ? "bg-gradient-to-r from-blue-500 to-indigo-500 gradient-flow marker-pulse" 
                         : "bg-gradient-to-r from-gray-500 to-slate-500"}
                     rounded-full flex items-center justify-center
                     border-[3px] border-black relative transition-all duration-300 cursor-pointer
-                    ${activeEvent === index ? "scale-125 ring-2 ring-blue-500/50 ring-offset-2 ring-offset-black" : "group-hover:scale-110"}`}
+                    ${isSelected ? "scale-125 ring-2 ring-blue-500/50 ring-offset-2 ring-offset-black" : "group-hover:scale-110"}`}
                   onClick={(e: React.MouseEvent) => {
                     e.stopPropagation();
                     handleEventChange(index);
@@ -303,7 +352,7 @@ function AutoSlideTimeline() {
                 >
                   {isPast && <span className="text-[10px]">✓</span>}
                   
-                  {activeEvent === index && (
+                  {isSelected && (
                     <div className="absolute w-full h-full rounded-full bg-blue-400 animate-ping opacity-30"></div>
                   )}
                 </div>
@@ -326,34 +375,34 @@ function AutoSlideTimeline() {
                   <div className={`
                     bg-gradient-to-r 
                     ${isPast ? "from-emerald-600/80 to-blue-600/80" : 
-                      isCurrent ? "from-indigo-600/80 to-blue-600/80 gradient-flow" : 
+                      isRealCurrent ? "from-indigo-600/80 to-blue-600/80 gradient-flow" : 
                       "from-gray-600/70 to-slate-600/70"}
                     backdrop-blur-sm p-6 rounded-lg 
                     shadow-[0_8px_30px_rgb(99,102,241,0.33)] md:max-w-sm w-full border border-indigo-500/20 
                     transition-all duration-500 ease-in-out cursor-pointer card-glow
-                    ${activeEvent === index ? "hover:shadow-[0_10px_40px_rgb(99,102,241,0.5)] hover:translate-y-[-5px] hover:border-indigo-400/40" : ""}`}
+                    ${isSelected ? "hover:shadow-[0_10px_40px_rgb(99,102,241,0.5)] hover:translate-y-[-5px] hover:border-indigo-400/40" : ""}`}
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/10 to-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"></div>
                     
                     {/* Animated particles */}
-                    {isCurrent && <div className="card-particles"></div>}
+                    {isRealCurrent && <div className="card-particles"></div>}
                     
-                    {/* Status badge */}
+                    {/* Status badge - Chỉ hiển thị "Hiện tại" cho sự kiện đang thực sự diễn ra */}
                     <div className={`absolute top-2 right-2 px-2 py-0.5 rounded-full text-xs font-medium
                       ${isPast 
                         ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30" 
-                        : isCurrent 
+                        : isRealCurrent 
                           ? "bg-blue-500/20 text-blue-300 border border-blue-500/30 animate-pulse-subtle" 
                           : "bg-gray-500/20 text-gray-300 border border-gray-500/30"}`}
                     >
-                      {isPast ? "Đã qua" : isCurrent ? "Hiện tại" : formatTimeRemaining(event.timestamp)}
+                      {isPast ? "Đã qua" : isRealCurrent ? "Hiện tại" : formatTimeRemaining(event.timestamp)}
                     </div>
                     
                     {/* Icon with animation when active */}
                     <div className={`absolute -right-3 -top-3 w-12 h-12 
-                        ${isPast ? "bg-emerald-500" : isCurrent ? "bg-indigo-500 icon-glow" : "bg-gray-500"}
+                        ${isPast ? "bg-emerald-500" : isRealCurrent ? "bg-indigo-500 icon-glow" : "bg-gray-500"}
                         rounded-full flex items-center justify-center 
-                        transform ${activeEvent === index ? "animate-pulse rotate-0" : "-rotate-12"} 
+                        transform ${isSelected ? "animate-pulse rotate-0" : "-rotate-12"} 
                         group-hover:rotate-0 transition-transform duration-500 border border-black/50`}>
                       <span className="text-lg">{event.icon}</span>
                     </div>
