@@ -53,9 +53,11 @@ export default function Home() {
             {/* Social Links */}
 
           {/* Button */}
+          <a href="http://discord.gg/uUTWNksZ">
           <Button className="bg-gradient-to-r from-blue-400 to-indigo-500 hover:from-blue-500 hover:to-indigo-600 text-white ml-auto py-2 px-4 text-sm">
             Tham gia Discord
           </Button>
+          </a>
         </div>
       </header>
 
@@ -685,7 +687,7 @@ export default function Home() {
               <span>
                 Discord:{" "}
                 <a
-                  href="#"
+                  href="https://discord.gg/uUTWNksZ"
                   className="text-indigo-400 hover:text-indigo-300 transition-all duration-300 hover:underline"
                 >
                   Tham gia Discord
@@ -1066,7 +1068,7 @@ export default function Home() {
           </li>
           <li className="group transition-all duration-300 hover:translate-x-2">
             <a 
-              href="#" 
+              href="https://discord.gg/uUTWNksZ" 
               className="flex items-start gap-3 text-white/70 group-hover:text-white"
             >
               <div className="w-5 h-5 rounded-lg bg-gradient-to-br from-purple-500/20 to-blue-500/20 flex-shrink-0
